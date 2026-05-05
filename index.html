@@ -4,16 +4,14 @@
 <meta charset="UTF-8">
 <title>Para Ti ❤️</title>
 
+<!-- Fuente cursiva -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+
 <style>
 body {
     margin: 0;
-    overflow: hidden;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(to right, #ff9a9e, #fad0c4);
-}
-
-/* CENTRAR */
-.container {
+    font-family: 'Dancing Script', cursive;
+    background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,10 +26,10 @@ body {
     background: #ff4d88;
     border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
 }
 
-/* TAPA SUPERIOR */
+/* TAPA */
 #tapa {
     position: absolute;
     width: 100%;
@@ -43,34 +41,31 @@ body {
     z-index: 3;
 }
 
-/* SOLAPA INFERIOR (CIERRA EL SOBRE) */
+/* BASE */
 #base {
     position: absolute;
     width: 100%;
     height: 100%;
     background: #e84375;
     clip-path: polygon(0 100%, 50% 40%, 100% 100%);
-    z-index: 2;
 }
 
 /* CARTA */
 #carta {
     position: absolute;
-    width: 90%;
-    height: 220px;
-    left: 5%;
-    bottom: 0;
+    width: 350px;
+    max-height: 450px;
     background: white;
-    border-radius: 12px;
-    padding: 15px;
-    text-align: left;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
     transform: translateY(100%);
-    transition: transform 1.2s ease;
+    transition: transform 1s;
     overflow-y: auto;
-    z-index: 1;
+    text-align: center;
 }
 
-/* SCROLL BONITO */
+/* SCROLL */
 #carta::-webkit-scrollbar {
     width: 6px;
 }
@@ -79,56 +74,62 @@ body {
     border-radius: 10px;
 }
 
-/* ABIERTO */
-.abierto #tapa {
-    transform: rotateX(180deg);
-}
-
-.abierto #carta {
-    transform: translateY(-180px);
-}
-
 /* TEXTO */
 h2 {
     color: #ff4d88;
-    text-align: center;
+    font-size: 28px;
 }
 
 p {
-    font-size: 15px;
-    color: #333;
-    line-height: 1.5;
+    font-size: 18px;
+    color: #444;
+    line-height: 1.6;
 }
 
-/* GALERÍA */
+/* FOTOS */
 .galeria img {
-    width: 80px;
-    margin: 5px;
-    border-radius: 10px;
+    width: 90px;
+    margin: 8px;
+    border-radius: 12px;
+    border: 3px solid #ddd;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.galeria img:hover {
+    transform: scale(1.1);
 }
 
 /* BOTÓN */
 button {
-    padding: 8px 12px;
+    padding: 8px 15px;
     background: #ff4d88;
     border: none;
     border-radius: 8px;
     color: white;
     cursor: pointer;
-    display: block;
-    margin: 10px auto;
+    margin-top: 10px;
 }
 
-/* CORAZONES */
-.corazon {
+/* EFECTOS */
+.abierto #tapa {
+    transform: rotateX(180deg);
+}
+
+.abierto #carta {
+    transform: translateY(-250px);
+}
+
+/* CUANDO SE ABRE */
+.oculto {
+    display: none;
+}
+
+/* CENTRAR CARTA FINAL */
+.cartaFinal {
     position: absolute;
-    font-size: 20px;
-    animation: flotar 4s linear infinite;
-}
-
-@keyframes flotar {
-    0% {transform: translateY(0); opacity: 1;}
-    100% {transform: translateY(-800px); opacity: 0;}
+    top: 50%;
+    transform: translateY(-50%);
 }
 </style>
 
@@ -136,38 +137,36 @@ button {
 
 <body>
 
-<div class="container">
-    <div id="sobre" onclick="abrirSobre()">
-        <div id="tapa"></div>
-        <div id="base"></div>
+<div id="sobre" onclick="abrirSobre()">
+    <div id="tapa"></div>
+    <div id="base"></div>
+</div>
 
-        <div id="carta">
-            <h2>Para mi amor 💕</h2>
+<div id="carta">
+    <h2>Para mi amor 💕</h2>
 
-            <p>
-Amor, quería escribirle una carta expresando lo que siento. Por eso están aquí estas palabras que salen directamente de mi corazón, que son sinceras y que esperan hacerte sonreír.<br><br>
+    <p>
+Amor, quería escribirle una carta expresando lo que siento...<br><br>
 
-Estar a su lado me hace creer mucho más en esos amores bonitos que nos cuentan y vemos en las telenovelas, cada día, hora, minuto y segundo con usted son una bendición gracias por compartir cada uno de esos momentos conmigo.<br><br>
+Estar a su lado me hace creer mucho más en esos amores bonitos...<br><br>
 
-Me encanta su forma de ser, la manera en la que ve, enfrenta al mundo y como me ha enseñado a querer y a quererme a mí mismo se convirtió en ese lugar que muchos anhelamos encontrar, pero pocos lo logran, no me importa donde, como ni cuando usted es mi lugar seguro la quiero mucho.<br><br>
+Me encanta su forma de ser...<br><br>
 
-Amo nuestros viajes, aunque a veces estemos perdidos, congestiones, hambre un millón de cosas, pero estamos juntos viviendo nuestra experiencia y construyendo nuestra historia la cual siempre me saca una sonrisa. Es usted mi compañera de vida.<br><br>
+Amo nuestros viajes...<br><br>
 
-Amo su sonrisa ilumina los días más grises y hace que todo sea más llevadero, que cada día al llegar necesite ver y disfrutar esa aura que me hace querer ser mejor día a día.<br><br>
+Amo su sonrisa...<br><br>
 
-Gracias por ser quien es, por todo lo que me da y por hacerme sentir tan especial.<br><br>
+Gracias por ser quien es...<br><br>
 
 <strong>¡Te Quiero! ❤️</strong>
-            </p>
+    </p>
 
-            <button onclick="event.stopPropagation(); reproducirMusica()">🎵 Música</button>
+    <button onclick="reproducirMusica()">🎵 Música</button>
 
-            <div class="galeria">
-                <img src="foto1.JPEG">
-                <img src="foto2.JPEG">
-                <img src="foto3.JPEG">
-            </div>
-        </div>
+    <div class="galeria">
+        <img src="foto1.JPEG">
+        <img src="foto2.JPEG">
+        <img src="foto3.JPEG">
     </div>
 </div>
 
@@ -177,25 +176,20 @@ Gracias por ser quien es, por todo lo que me da y por hacerme sentir tan especia
 
 <script>
 function abrirSobre(){
-    document.getElementById("sobre").classList.toggle("abierto");
-    lanzarCorazones();
+    let sobre = document.getElementById("sobre");
+    let carta = document.getElementById("carta");
+
+    sobre.classList.add("abierto");
+
+    setTimeout(()=>{
+        sobre.classList.add("oculto");
+        carta.classList.add("cartaFinal");
+        carta.style.transform = "translateY(-50%)";
+    }, 1000);
 }
 
 function reproducirMusica(){
     document.getElementById("musica").play();
-}
-
-function lanzarCorazones(){
-    for(let i=0;i<12;i++){
-        let c = document.createElement("div");
-        c.className = "corazon";
-        c.innerHTML = "❤️";
-        c.style.left = Math.random()*100 + "vw";
-        c.style.top = "100vh";
-        c.style.animationDuration = (2 + Math.random()*3) + "s";
-        document.body.appendChild(c);
-        setTimeout(()=>c.remove(),4000);
-    }
 }
 </script>
 
