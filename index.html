@@ -4,61 +4,36 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Para Ti ❤️</title>
+<title>Para Abi ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
 
 <style>
 body {
     margin: 0;
     font-family: 'Playfair Display', serif;
-    background: black;
     overflow: hidden;
+    background: black;
 }
 
-/* FOTOS FONDO */
-.fondo {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-
+/* FONDO */
 .fondo img {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     object-fit: cover;
     opacity: 0;
     transition: opacity 2s ease;
+    z-index: 0;
 }
 
-/* CARTA */
-#carta {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 120%);
-    width: 90vw;
-    max-width: 420px;
-    max-height: 75vh;
-    background: rgba(255,255,255,0.95);
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    overflow-y: auto;
-    text-align: center;
-    z-index: 2;
-}
-
-/* TEXTO */
-h2 {
-    color: #ff4d88;
-}
-
-p {
-    font-size: 16px;
-    line-height: 1.6;
+/* OVERLAY OSCURO */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45);
+    z-index: 1;
 }
 
 /* SOBRE */
@@ -74,6 +49,14 @@ p {
     border-radius: 10px;
     cursor: pointer;
     z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+    text-align: center;
+    padding: 10px;
 }
 
 /* TAPA */
@@ -85,6 +68,7 @@ p {
     clip-path: polygon(0 0, 50% 60%, 100% 0);
     transform-origin: top;
     transition: transform 1s;
+    z-index: 4;
 }
 
 /* BASE */
@@ -94,6 +78,34 @@ p {
     height: 100%;
     background: #e84375;
     clip-path: polygon(0 100%, 50% 40%, 100% 100%);
+}
+
+/* CARTA */
+#carta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 120%);
+    width: 90vw;
+    max-width: 420px;
+    max-height: 75vh;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    overflow-y: auto;
+    text-align: center;
+    z-index: 2;
+}
+
+/* TEXTO */
+h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 17px;
+    line-height: 1.7;
 }
 
 /* ANIMACIONES */
@@ -114,7 +126,7 @@ p {
 
 <body>
 
-<!-- FONDO DINÁMICO -->
+<!-- FOTOS -->
 <div class="fondo">
     <img src="foto1.JPEG">
     <img src="foto2.JPEG">
@@ -126,8 +138,12 @@ p {
     <img src="foto8.JPEG">
 </div>
 
+<!-- CAPA OSCURA -->
+<div class="overlay"></div>
+
 <!-- SOBRE -->
 <div id="sobre" onclick="abrirSobre()">
+    De David para Abi 💌
     <div id="tapa"></div>
     <div id="base"></div>
 </div>
@@ -153,7 +169,7 @@ Gracias por ser quien es, por todo lo que me da y por hacerme sentir tan especia
     </p>
 </div>
 
-<audio id="musica" loop>
+<audio id="musica" loop autoplay>
     <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
@@ -174,16 +190,25 @@ function iniciarGaleria(){
 function abrirSobre(){
     let sobre = document.getElementById("sobre");
     let carta = document.getElementById("carta");
-    let musica = document.getElementById("musica");
 
     sobre.classList.add("abierto");
 
     setTimeout(()=>{
         sobre.classList.add("oculto");
         carta.classList.add("mostrarCarta");
-        musica.play();
-        iniciarGaleria();
     }, 1000);
+}
+
+/* INICIA TODO */
+window.onload = function(){
+    iniciarGaleria();
+
+    let audio = document.getElementById("musica");
+    audio.play().catch(() => {
+        document.body.addEventListener("click", () => {
+            audio.play();
+        }, { once: true });
+    });
 }
 </script>
 
