@@ -27,7 +27,7 @@ body {
     z-index: 0;
 }
 
-/* OVERLAY */
+/* OSCURECER */
 .overlay {
     position: fixed;
     width: 100%;
@@ -36,52 +36,68 @@ body {
     z-index: 1;
 }
 
-/* SOBRE */
-#sobre {
+/* TEXTO ARRIBA */
+#titulo {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80vw;
-    max-width: 320px;
-    height: 180px;
-    border-radius: 10px;
-    cursor: pointer;
-    z-index: 3;
-}
-
-/* TEXTO ENCIMA */
-#textoSobre {
-    position: absolute;
+    top: 15%;
     width: 100%;
-    top: 35%;
     text-align: center;
     color: white;
     font-family: 'Great Vibes', cursive;
-    font-size: 30px;
-    z-index: 5;
+    font-size: 34px;
+    z-index: 3;
+}
+
+/* BOTÓN CORAZÓN */
+#corazon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 120px;
+    height: 120px;
+    background: #ff4d88;
+    cursor: pointer;
+    z-index: 3;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transition: transform 0.3s;
+}
+
+#corazon:hover {
+    transform: translate(-50%, -50%) rotate(-45deg) scale(1.1);
+}
+
+#corazon::before,
+#corazon::after {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: #ff4d88;
+    border-radius: 50%;
+}
+
+#corazon::before {
+    top: -60px;
+    left: 0;
+}
+
+#corazon::after {
+    left: 60px;
+    top: 0;
+}
+
+/* TEXTO DENTRO DEL CORAZÓN */
+#textoCorazon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    color: white;
+    font-size: 18px;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
     pointer-events: none;
-}
-
-/* BASE DORADA */
-#base {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #d4af37, #ffd700);
-    clip-path: polygon(0 100%, 50% 40%, 100% 100%);
-}
-
-/* TAPA DORADA */
-#tapa {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #ffd700, #c9a227);
-    clip-path: polygon(0 0, 50% 60%, 100% 0);
-    transform-origin: top;
-    transition: transform 1s;
-    z-index: 4;
 }
 
 /* CARTA */
@@ -112,19 +128,15 @@ p {
 }
 
 /* ANIMACIONES */
-.abierto #tapa {
-    transform: rotateX(180deg);
-}
-
 .mostrarCarta {
     transform: translate(-50%, -50%) !important;
 }
 
-/* DESAPARECER SUAVE */
-.fadeOut {
+/* DESAPARECER */
+.oculto {
     opacity: 0;
-    transition: opacity 0.8s ease;
     pointer-events: none;
+    transition: opacity 0.8s ease;
 }
 </style>
 
@@ -132,7 +144,7 @@ p {
 
 <body>
 
-<!-- FONDO -->
+<!-- FOTOS -->
 <div class="fondo">
     <img src="foto1.JPEG">
     <img src="foto2.JPEG">
@@ -146,11 +158,12 @@ p {
 
 <div class="overlay"></div>
 
-<!-- SOBRE -->
-<div id="sobre" onclick="abrirSobre()">
-    <div id="textoSobre">De David para Abi 💌</div>
-    <div id="tapa"></div>
-    <div id="base"></div>
+<!-- TEXTO -->
+<div id="titulo">De David para Abi 💌</div>
+
+<!-- CORAZÓN -->
+<div id="corazon" onclick="abrirCarta()">
+    <div id="textoCorazon">Ábreme ❤️</div>
 </div>
 
 <!-- CARTA -->
@@ -192,16 +205,12 @@ function iniciarGaleria(){
     }, 3000);
 }
 
-function abrirSobre(){
-    let sobre = document.getElementById("sobre");
+function abrirCarta(){
+    let corazon = document.getElementById("corazon");
     let carta = document.getElementById("carta");
 
-    sobre.classList.add("abierto");
-
-    setTimeout(()=>{
-        sobre.classList.add("fadeOut");  // se desvanece
-        carta.classList.add("mostrarCarta");
-    }, 1000);
+    corazon.classList.add("oculto");
+    carta.classList.add("mostrarCarta");
 }
 
 window.onload = function(){
