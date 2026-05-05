@@ -46,9 +46,10 @@ body {
     font-family: 'Great Vibes', cursive;
     font-size: 34px;
     z-index: 3;
+    transition: opacity 0.8s ease;
 }
 
-/* BOTÓN CORAZÓN */
+/* CORAZÓN */
 #corazon {
     position: absolute;
     top: 50%;
@@ -85,19 +86,6 @@ body {
 #corazon::after {
     left: 60px;
     top: 0;
-}
-
-/* TEXTO DENTRO DEL CORAZÓN */
-#textoCorazon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(45deg);
-    color: white;
-    font-size: 18px;
-    font-family: 'Playfair Display', serif;
-    text-align: center;
-    pointer-events: none;
 }
 
 /* CARTA */
@@ -162,9 +150,7 @@ p {
 <div id="titulo">De David para Abi 💌</div>
 
 <!-- CORAZÓN -->
-<div id="corazon" onclick="abrirCarta()">
-    <div id="textoCorazon">Ábreme ❤️</div>
-</div>
+<div id="corazon" onclick="abrirCarta()"></div>
 
 <!-- CARTA -->
 <div id="carta">
@@ -208,8 +194,10 @@ function iniciarGaleria(){
 function abrirCarta(){
     let corazon = document.getElementById("corazon");
     let carta = document.getElementById("carta");
+    let titulo = document.getElementById("titulo");
 
     corazon.classList.add("oculto");
+    titulo.classList.add("oculto");
     carta.classList.add("mostrarCarta");
 }
 
