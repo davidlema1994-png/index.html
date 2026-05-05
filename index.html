@@ -5,95 +5,144 @@
 <title>Para Ti ❤️</title>
 
 <style>
-    body {
-        margin: 0;
-        font-family: 'Arial', sans-serif;
-        background: linear-gradient(to right, #ff9a9e, #fad0c4);
-        text-align: center;
-        color: white;
-    }
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-    #contenido {
-        display: none;
-        padding: 20px;
-    }
+/* LOGIN */
+#login {
+    text-align: center;
+}
 
-    h1 {
-        font-size: 40px;
-        margin-top: 20px;
-    }
+input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
 
-    p {
-        font-size: 20px;
-        max-width: 600px;
-        margin: auto;
-    }
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    background: #ff4d88;
+    color: white;
+    cursor: pointer;
+}
 
-    .galeria img {
-        width: 250px;
-        margin: 10px;
-        border-radius: 15px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        transition: transform 0.3s;
-    }
+/* SOBRE */
+#sobre {
+    display: none;
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: #ff4d88;
+    border-radius: 10px;
+    cursor: pointer;
+}
 
-    .galeria img:hover {
-        transform: scale(1.05);
-    }
+/* Tapa del sobre */
+#tapa {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ff6699;
+    clip-path: polygon(0 0, 50% 60%, 100% 0);
+    transform-origin: top;
+    transition: transform 1s;
+}
 
-    button {
-        padding: 10px 20px;
-        font-size: 18px;
-        background: #ff4d88;
-        border: none;
-        border-radius: 10px;
-        color: white;
-        cursor: pointer;
-        margin-top: 20px;
-    }
+/* Carta */
+#carta {
+    position: absolute;
+    width: 90%;
+    left: 5%;
+    top: 10px;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transform: translateY(100px);
+    transition: transform 1s;
+}
+
+.abierto #tapa {
+    transform: rotateX(180deg);
+}
+
+.abierto #carta {
+    transform: translateY(-120px);
+}
+
+/* Galería */
+.galeria img {
+    width: 80px;
+    margin: 5px;
+    border-radius: 8px;
+}
 </style>
 
 </head>
 
 <body>
 
-<script>
-    let clave = prompt("💌 Ingresa nuestro código secreto:");
-
-    if(clave === "TEAMO123"){
-        document.getElementById("contenido")?.style?.display = "block";
-    } else {
-        document.write("<h1>Acceso denegado 😢</h1>");
-    }
-</script>
-
-<div id="contenido">
-
-    <h1>Para mi amor 💕</h1>
-
-    <p>
-        Desde que llegaste a mi vida todo cambió para bien.  
-        Gracias por cada momento, cada sonrisa y cada recuerdo.  
-        Te amo mucho ❤️
-    </p>
-
-    <button onclick="mostrarMensaje()">Presiona aquí 💖</button>
-
-    <p id="mensajeExtra" style="display:none; margin-top:20px;">
-        Eres lo mejor que me ha pasado en la vida 😍✨
-    </p>
-
-    <div class="galeria">
-        <img src="foto1.JPEG">
-        <img src="foto2.JPEG">
-        <img src="foto3.JPEG">
-    </div>
-
+<!-- LOGIN -->
+<div id="login">
+    <h2>💌 Ingresa la contraseña</h2>
+    <input type="password" id="clave">
+    <br>
+    <button onclick="verificar()">Abrir 💖</button>
 </div>
 
+<!-- SOBRE -->
+<div id="sobre" onclick="abrirSobre()">
+    <div id="tapa"></div>
+
+    <div id="carta">
+        <h3>Para mi amor 💕</h3>
+        <p>
+            Desde que estás conmigo todo es más bonito.  
+            Gracias por hacer mi vida tan especial ❤️
+        </p>
+
+        <button onclick="event.stopPropagation(); reproducirMusica()">🎵 Música</button>
+
+        <div class="galeria">
+            <img src="foto1.JPEG">
+            <img src="foto2.JPEG">
+            <img src="foto3.JPEG">
+        </div>
+    </div>
+</div>
+
+<audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-function mostrarMensaje(){
-    document.getElementById("mensajeExtra").style.display = "block";
+function verificar(){
+    let clave = document.getElementById("clave").value;
+
+    if(clave === "TEAMO123"){
+        document.getElementById("login").style.display = "none";
+        document.getElementById("sobre").style.display = "block";
+    } else {
+        alert("Contraseña incorrecta 😢");
+    }
+}
+
+function abrirSobre(){
+    document.getElementById("sobre").classList.toggle("abierto");
+}
+
+function reproducirMusica(){
+    document.getElementById("musica").play();
 }
 </script>
 
