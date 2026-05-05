@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Para Ti ❤️</title>
 
-<!-- Fuente cursiva -->
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 
 <style>
@@ -12,21 +11,43 @@ body {
     margin: 0;
     font-family: 'Dancing Script', cursive;
     background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    overflow: hidden;
 }
+
+/* FONDO CON FOTOS */
+.fondo {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.fondo img {
+    position: absolute;
+    width: 180px;
+    opacity: 0.15;
+    border-radius: 15px;
+}
+
+/* posiciones */
+.f1 { top: 10%; left: 5%; }
+.f2 { bottom: 10%; right: 5%; }
+.f3 { top: 50%; left: 70%; }
 
 /* SOBRE */
 #sobre {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 320px;
     height: 200px;
     background: #ff4d88;
     border-radius: 10px;
     cursor: pointer;
     box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    z-index: 2;
 }
 
 /* TAPA */
@@ -53,16 +74,18 @@ body {
 /* CARTA */
 #carta {
     position: absolute;
-    width: 350px;
-    max-height: 450px;
-    background: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    width: 400px;
+    max-height: 500px;
+    background: rgba(255,255,255,0.95);
     border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    transform: translateY(100%);
-    transition: transform 1s;
+    padding: 25px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     overflow-y: auto;
     text-align: center;
+    z-index: 1;
 }
 
 /* SCROLL */
@@ -86,20 +109,6 @@ p {
     line-height: 1.6;
 }
 
-/* FOTOS */
-.galeria img {
-    width: 90px;
-    margin: 8px;
-    border-radius: 12px;
-    border: 3px solid #ddd;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-    transition: transform 0.3s;
-}
-
-.galeria img:hover {
-    transform: scale(1.1);
-}
-
 /* BOTÓN */
 button {
     padding: 8px 15px;
@@ -108,28 +117,21 @@ button {
     border-radius: 8px;
     color: white;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
-/* EFECTOS */
+/* ANIMACIÓN */
 .abierto #tapa {
     transform: rotateX(180deg);
 }
 
-.abierto #carta {
-    transform: translateY(-250px);
+.mostrarCarta {
+    transform: translate(-50%, -50%) !important;
 }
 
-/* CUANDO SE ABRE */
+/* OCULTAR SOBRE */
 .oculto {
     display: none;
-}
-
-/* CENTRAR CARTA FINAL */
-.cartaFinal {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
 }
 </style>
 
@@ -137,37 +139,40 @@ button {
 
 <body>
 
+<!-- FONDO -->
+<div class="fondo">
+    <img src="foto1.JPEG" class="f1">
+    <img src="foto2.JPEG" class="f2">
+    <img src="foto3.JPEG" class="f3">
+</div>
+
+<!-- SOBRE -->
 <div id="sobre" onclick="abrirSobre()">
     <div id="tapa"></div>
     <div id="base"></div>
 </div>
 
+<!-- CARTA -->
 <div id="carta">
     <h2>Para mi amor 💕</h2>
 
     <p>
-Amor, quería escribirle una carta expresando lo que siento...<br><br>
+Amor, quería escribirle una carta expresando lo que siento. Por eso están aquí estás palabras que salen directamente de mi corazón, que son sinceras y que esperan hacerte sonreír.<br><br>
 
-Estar a su lado me hace creer mucho más en esos amores bonitos...<br><br>
+Estar a su lado me hace creer mucho mas en esos amores bonitos que nos cuentan y vemos en las telenovelas, cada dia, hora, minuto y segundo con usted son una bendición gracias por compartir cada uno de esos momentos conmigo.<br><br>
 
-Me encanta su forma de ser...<br><br>
+Me encanta su forma de ser, la manera en la que ve, enfrenta al mundo y como me ha enseñado a querer y a quererme a mí mismo se convirtió en ese lugar que muchos anhelamos encontrar, pero pocos lo logran, no me importa donde, como ni cuando usted es mi lugar seguro la quiero mucho.<br><br>
 
-Amo nuestros viajes...<br><br>
+Amo nuestros viajes, aunque a veces estemos perdidos, congestiones, hambre un millón de cosas, pero estamos juntos viviendo nuestra experiencia y construyendo nuestra historia la cual siempre me saca una sonrisa. es usted mi compañera de vida.<br><br>
 
-Amo su sonrisa...<br><br>
+Amo su sonrisa ilumina los días más grises y hace que todo sea más llevadero, que cada dia al llegar necesite ver y disfrutar esa aura que me hace querer ser mejor dia a dia.<br><br>
 
-Gracias por ser quien es...<br><br>
+Gracias por ser quien es, por todo lo que me da y por hacerme sentir tan especial.<br><br>
 
 <strong>¡Te Quiero! ❤️</strong>
     </p>
 
     <button onclick="reproducirMusica()">🎵 Música</button>
-
-    <div class="galeria">
-        <img src="foto1.JPEG">
-        <img src="foto2.JPEG">
-        <img src="foto3.JPEG">
-    </div>
 </div>
 
 <audio id="musica" loop>
@@ -183,8 +188,7 @@ function abrirSobre(){
 
     setTimeout(()=>{
         sobre.classList.add("oculto");
-        carta.classList.add("cartaFinal");
-        carta.style.transform = "translateY(-50%)";
+        carta.classList.add("mostrarCarta");
     }, 1000);
 }
 
