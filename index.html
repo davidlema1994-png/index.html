@@ -2,20 +2,21 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Para Ti ❤️</title>
 
-<!-- Fuente más legible -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 
 <style>
 body {
     margin: 0;
     font-family: 'Playfair Display', serif;
-    background: linear-gradient(135deg, #f0f0f0, #dcdcdc);
+    background: black;
     overflow: hidden;
 }
 
-/* FONDO DE FOTOS */
+/* FOTOS FONDO */
 .fondo {
     position: fixed;
     width: 100%;
@@ -25,21 +26,40 @@ body {
 
 .fondo img {
     position: absolute;
-    width: 200px;
-    opacity: 0.35;
-    border-radius: 15px;
-    filter: blur(1px);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 2s ease;
 }
 
-/* posiciones 8 fotos */
-.f1 { top: 5%; left: 5%; }
-.f2 { top: 10%; right: 5%; }
-.f3 { bottom: 5%; left: 10%; }
-.f4 { bottom: 10%; right: 10%; }
-.f5 { top: 40%; left: 2%; }
-.f6 { top: 45%; right: 2%; }
-.f7 { top: 70%; left: 40%; }
-.f8 { top: 20%; left: 40%; }
+/* CARTA */
+#carta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 120%);
+    width: 90vw;
+    max-width: 420px;
+    max-height: 75vh;
+    background: rgba(255,255,255,0.95);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    overflow-y: auto;
+    text-align: center;
+    z-index: 2;
+}
+
+/* TEXTO */
+h2 {
+    color: #ff4d88;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
 
 /* SOBRE */
 #sobre {
@@ -47,13 +67,13 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 320px;
-    height: 200px;
+    width: 80vw;
+    max-width: 320px;
+    height: 180px;
     background: #ff4d88;
     border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-    z-index: 2;
+    z-index: 3;
 }
 
 /* TAPA */
@@ -65,7 +85,6 @@ body {
     clip-path: polygon(0 0, 50% 60%, 100% 0);
     transform-origin: top;
     transition: transform 1s;
-    z-index: 3;
 }
 
 /* BASE */
@@ -77,36 +96,7 @@ body {
     clip-path: polygon(0 100%, 50% 40%, 100% 100%);
 }
 
-/* CARTA */
-#carta {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 100%);
-    width: 420px;
-    max-height: 500px;
-    background: rgba(255,255,255,0.96);
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    overflow-y: auto;
-    text-align: center;
-    z-index: 1;
-}
-
-/* TEXTO */
-h2 {
-    color: #ff4d88;
-    font-size: 28px;
-}
-
-p {
-    font-size: 18px;
-    color: #333;
-    line-height: 1.7;
-}
-
-/* ANIMACIÓN */
+/* ANIMACIONES */
 .abierto #tapa {
     transform: rotateX(180deg);
 }
@@ -124,16 +114,16 @@ p {
 
 <body>
 
-<!-- FONDO CON 8 FOTOS -->
+<!-- FONDO DINÁMICO -->
 <div class="fondo">
-    <img src="foto1.JPEG" class="f1">
-    <img src="foto2.JPEG" class="f2">
-    <img src="foto3.JPEG" class="f3">
-    <img src="foto4.JPEG" class="f4">
-    <img src="foto5.JPEG" class="f5">
-    <img src="foto6.JPEG" class="f6">
-    <img src="foto7.JPEG" class="f7">
-    <img src="foto8.JPEG" class="f8">
+    <img src="foto1.JPEG">
+    <img src="foto2.JPEG">
+    <img src="foto3.JPEG">
+    <img src="foto4.JPEG">
+    <img src="foto5.JPEG">
+    <img src="foto6.JPEG">
+    <img src="foto7.JPEG">
+    <img src="foto8.JPEG">
 </div>
 
 <!-- SOBRE -->
@@ -168,6 +158,19 @@ Gracias por ser quien es, por todo lo que me da y por hacerme sentir tan especia
 </audio>
 
 <script>
+let fotos = document.querySelectorAll(".fondo img");
+let index = 0;
+
+function iniciarGaleria(){
+    fotos[index].style.opacity = 1;
+
+    setInterval(() => {
+        fotos[index].style.opacity = 0;
+        index = (index + 1) % fotos.length;
+        fotos[index].style.opacity = 1;
+    }, 3000);
+}
+
 function abrirSobre(){
     let sobre = document.getElementById("sobre");
     let carta = document.getElementById("carta");
@@ -179,6 +182,7 @@ function abrirSobre(){
         sobre.classList.add("oculto");
         carta.classList.add("mostrarCarta");
         musica.play();
+        iniciarGaleria();
     }, 1000);
 }
 </script>
