@@ -4,36 +4,42 @@
 <meta charset="UTF-8">
 <title>Para Ti ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+<!-- Fuente más legible -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 
 <style>
 body {
     margin: 0;
-    font-family: 'Dancing Script', cursive;
-    background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(135deg, #f0f0f0, #dcdcdc);
     overflow: hidden;
 }
 
-/* FONDO CON FOTOS */
+/* FONDO DE FOTOS */
 .fondo {
     position: fixed;
     width: 100%;
     height: 100%;
-    overflow: hidden;
     z-index: 0;
 }
 
 .fondo img {
     position: absolute;
-    width: 180px;
-    opacity: 0.15;
+    width: 200px;
+    opacity: 0.35;
     border-radius: 15px;
+    filter: blur(1px);
 }
 
-/* posiciones */
-.f1 { top: 10%; left: 5%; }
-.f2 { bottom: 10%; right: 5%; }
-.f3 { top: 50%; left: 70%; }
+/* posiciones 8 fotos */
+.f1 { top: 5%; left: 5%; }
+.f2 { top: 10%; right: 5%; }
+.f3 { bottom: 5%; left: 10%; }
+.f4 { bottom: 10%; right: 10%; }
+.f5 { top: 40%; left: 2%; }
+.f6 { top: 45%; right: 2%; }
+.f7 { top: 70%; left: 40%; }
+.f8 { top: 20%; left: 40%; }
 
 /* SOBRE */
 #sobre {
@@ -77,24 +83,15 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, 100%);
-    width: 400px;
+    width: 420px;
     max-height: 500px;
-    background: rgba(255,255,255,0.95);
+    background: rgba(255,255,255,0.96);
     border-radius: 15px;
     padding: 25px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     overflow-y: auto;
     text-align: center;
     z-index: 1;
-}
-
-/* SCROLL */
-#carta::-webkit-scrollbar {
-    width: 6px;
-}
-#carta::-webkit-scrollbar-thumb {
-    background: #ff4d88;
-    border-radius: 10px;
 }
 
 /* TEXTO */
@@ -105,19 +102,8 @@ h2 {
 
 p {
     font-size: 18px;
-    color: #444;
-    line-height: 1.6;
-}
-
-/* BOTÓN */
-button {
-    padding: 8px 15px;
-    background: #ff4d88;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    margin-top: 15px;
+    color: #333;
+    line-height: 1.7;
 }
 
 /* ANIMACIÓN */
@@ -129,7 +115,6 @@ button {
     transform: translate(-50%, -50%) !important;
 }
 
-/* OCULTAR SOBRE */
 .oculto {
     display: none;
 }
@@ -139,11 +124,16 @@ button {
 
 <body>
 
-<!-- FONDO -->
+<!-- FONDO CON 8 FOTOS -->
 <div class="fondo">
     <img src="foto1.JPEG" class="f1">
     <img src="foto2.JPEG" class="f2">
     <img src="foto3.JPEG" class="f3">
+    <img src="foto4.JPEG" class="f4">
+    <img src="foto5.JPEG" class="f5">
+    <img src="foto6.JPEG" class="f6">
+    <img src="foto7.JPEG" class="f7">
+    <img src="foto8.JPEG" class="f8">
 </div>
 
 <!-- SOBRE -->
@@ -171,8 +161,6 @@ Gracias por ser quien es, por todo lo que me da y por hacerme sentir tan especia
 
 <strong>¡Te Quiero! ❤️</strong>
     </p>
-
-    <button onclick="reproducirMusica()">🎵 Música</button>
 </div>
 
 <audio id="musica" loop>
@@ -183,17 +171,15 @@ Gracias por ser quien es, por todo lo que me da y por hacerme sentir tan especia
 function abrirSobre(){
     let sobre = document.getElementById("sobre");
     let carta = document.getElementById("carta");
+    let musica = document.getElementById("musica");
 
     sobre.classList.add("abierto");
 
     setTimeout(()=>{
         sobre.classList.add("oculto");
         carta.classList.add("mostrarCarta");
+        musica.play();
     }, 1000);
-}
-
-function reproducirMusica(){
-    document.getElementById("musica").play();
 }
 </script>
 
