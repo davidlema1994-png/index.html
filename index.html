@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Ti ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(to right, #ff9a9e, #fad0c4);
+        text-align: center;
+        color: white;
+    }
+
+    #contenido {
+        display: none;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 40px;
+        margin-top: 20px;
+    }
+
+    p {
+        font-size: 20px;
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .galeria img {
+        width: 250px;
+        margin: 10px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        transition: transform 0.3s;
+    }
+
+    .galeria img:hover {
+        transform: scale(1.05);
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 18px;
+        background: #ff4d88;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+</style>
+
+</head>
+
+<body>
+
+<script>
+    let clave = prompt("💌 Ingresa nuestro código secreto:");
+
+    if(clave === "TEAMO123"){
+        document.getElementById("contenido")?.style?.display = "block";
+    } else {
+        document.write("<h1>Acceso denegado 😢</h1>");
+    }
+</script>
+
+<div id="contenido">
+
+    <h1>Para mi amor 💕</h1>
+
+    <p>
+        Desde que llegaste a mi vida todo cambió para bien.  
+        Gracias por cada momento, cada sonrisa y cada recuerdo.  
+        Te amo mucho ❤️
+    </p>
+
+    <button onclick="mostrarMensaje()">Presiona aquí 💖</button>
+
+    <p id="mensajeExtra" style="display:none; margin-top:20px;">
+        Eres lo mejor que me ha pasado en la vida 😍✨
+    </p>
+
+    <div class="galeria">
+        <img src="foto1.jpg">
+        <img src="foto2.jpg">
+        <img src="foto3.jpg">
+    </div>
+
+</div>
+
+<audio autoplay loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function mostrarMensaje(){
+    document.getElementById("mensajeExtra").style.display = "block";
+}
+</script>
+
+</body>
+</html>
