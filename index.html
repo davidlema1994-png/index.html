@@ -7,47 +7,36 @@
 <style>
 body {
     margin: 0;
+    overflow: hidden;
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(to right, #ff9a9e, #fad0c4);
+}
+
+/* CENTRAR */
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-/* LOGIN */
-#login {
-    text-align: center;
-}
-
-input {
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-}
-
-button {
-    padding: 10px 20px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 10px;
-    background: #ff4d88;
-    color: white;
-    cursor: pointer;
-}
-
 /* SOBRE */
 #sobre {
-    display: none;
     position: relative;
-    width: 300px;
+    width: 320px;
     height: 200px;
     background: #ff4d88;
     border-radius: 10px;
     cursor: pointer;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    transition: transform 0.5s;
 }
 
-/* Tapa del sobre */
+#sobre:hover {
+    transform: scale(1.05);
+}
+
+/* TAPA */
 #tapa {
     position: absolute;
     width: 100%;
@@ -56,35 +45,90 @@ button {
     clip-path: polygon(0 0, 50% 60%, 100% 0);
     transform-origin: top;
     transition: transform 1s;
+    z-index: 3;
 }
 
-/* Carta */
+/* CARTA */
 #carta {
     position: absolute;
     width: 90%;
     left: 5%;
-    top: 10px;
+    bottom: 0;
     background: white;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 15px;
     text-align: center;
-    transform: translateY(100px);
-    transition: transform 1s;
+    transform: translateY(100%);
+    transition: transform 1.2s ease;
+    z-index: 1;
 }
 
+/* ABIERTO */
 .abierto #tapa {
     transform: rotateX(180deg);
 }
 
 .abierto #carta {
-    transform: translateY(-120px);
+    transform: translateY(-150px);
 }
 
-/* Galería */
+/* TEXTO */
+h2 {
+    color: #ff4d88;
+}
+
+p {
+    font-size: 16px;
+    color: #333;
+}
+
+/* GALERÍA */
 .galeria img {
-    width: 80px;
+    width: 90px;
     margin: 5px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.galeria img:hover {
+    transform: scale(1.1);
+}
+
+/* BOTÓN */
+button {
+    padding: 8px 15px;
+    background: #ff4d88;
+    border: none;
     border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+/* CORAZONES */
+.corazon {
+    position: absolute;
+    color: red;
+    font-size: 20px;
+    animation: flotar 4s linear infinite;
+}
+
+@keyframes flotar {
+    0% {transform: translateY(0); opacity: 1;}
+    100% {transform: translateY(-800px); opacity: 0;}
+}
+
+/* BRILLO */
+#luz {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.6), transparent);
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.abierto #luz {
+    opacity: 1;
 }
 </style>
 
@@ -92,31 +136,34 @@ button {
 
 <body>
 
-<!-- LOGIN -->
-<div id="login">
-    <h2>💌 Ingresa la contraseña</h2>
-    <input type="password" id="clave">
-    <br>
-    <button onclick="verificar()">Abrir 💖</button>
-</div>
+<div class="container">
+    <div id="sobre" onclick="abrirSobre()">
+        <div id="luz"></div>
+        <div id="tapa"></div>
 
-<!-- SOBRE -->
-<div id="sobre" onclick="abrirSobre()">
-    <div id="tapa"></div>
+        <div id="carta">
+            <h2>Para mi amor 💕</h2>
+            <p>
+                Desde que llegaste a mi vida todo es más bonito.  
+                Eres mi felicidad, mi paz y mi todo ❤️
 
-    <div id="carta">
-        <h3>Para mi amor 💕</h3>
-        <p>
-            Desde que estás conmigo todo es más bonito.  
-            Gracias por hacer mi vida tan especial ❤️
-        </p>
+                Amor, quería escribirle una carta expresando lo que siento. Por eso están aquí estás palabras que salen directamente de mi corazón, que son sinceras y que esperan hacerte sonreír.
+Estar a su lado me hace creer mucho mas en esos amores bonitos que nos cuentan y vemos en las telenovelas, cada dia, hora, minuto y segundo con usted son una bendición gracias por compartir cada uno de esos momentos conmigo.
+Me encanta su forma de ser, la manera en la que ve, enfrenta al mundo y como me ha enseñado a querer y a quererme a mí mismo se convirtió en ese lugar que muchos anhelamos encontrar, pero pocos lo logran, no me importa donde, como ni cuando usted es mi lugar seguro la quiero mucho.
+Amo nuestros viajes, aunque a veces estemos perdidos, congestiones, hambre un millón de cosas, pero estamos juntos viviendo nuestra experiencia y construyendo nuestra historia la cual siempre me saca una sonrisa. es usted mi compañera de vida.
+Amo su sonrisa ilumina los días más grises y hace que todo sea más llevadero, que cada dia al llegar necesite ver y disfrutar esa aura que me hace querer ser mejor dia a dia.
+Gracias por ser quien es, por todo lo que me da y por hacerme sentir tan especial.
+¡Te Quiero!
 
-        <button onclick="event.stopPropagation(); reproducirMusica()">🎵 Música</button>
+            </p>
 
-        <div class="galeria">
-            <img src="foto1.JPEG">
-            <img src="foto2.JPEG">
-            <img src="foto3.JPEG">
+            <button onclick="event.stopPropagation(); reproducirMusica()">🎵 Música</button>
+
+            <div class="galeria">
+                <img src="foto1.JPEG">
+                <img src="foto2.JPEG">
+                <img src="foto3.JPEG">
+            </div>
         </div>
     </div>
 </div>
@@ -126,23 +173,32 @@ button {
 </audio>
 
 <script>
-function verificar(){
-    let clave = document.getElementById("clave").value;
-
-    if(clave === "TEAMO123"){
-        document.getElementById("login").style.display = "none";
-        document.getElementById("sobre").style.display = "block";
-    } else {
-        alert("Contraseña incorrecta 😢");
-    }
-}
-
 function abrirSobre(){
     document.getElementById("sobre").classList.toggle("abierto");
+    lanzarCorazones();
 }
 
+/* Música */
 function reproducirMusica(){
     document.getElementById("musica").play();
+}
+
+/* Corazones animados */
+function lanzarCorazones(){
+    for(let i=0;i<15;i++){
+        let corazon = document.createElement("div");
+        corazon.className = "corazon";
+        corazon.innerHTML = "❤️";
+
+        corazon.style.left = Math.random()*100 + "vw";
+        corazon.style.top = "100vh";
+
+        corazon.style.animationDuration = (2 + Math.random()*3) + "s";
+
+        document.body.appendChild(corazon);
+
+        setTimeout(()=>corazon.remove(),4000);
+    }
 }
 </script>
 
